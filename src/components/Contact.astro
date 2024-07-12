@@ -1,0 +1,46 @@
+<section id="contact" class="w-[75%] flex justify-center mx-auto py-16 xl:w-[80%] sm:w-full">
+
+	<div class="sm:w-[50%] xs:w-full">
+        <h2 class="text-5xl font-bold w-fit bg-clip-text text-transparent bg-gradient-to-r from-pink-500 from-30% via-orange-500 via-70% to-orange-400">
+            Contact
+        </h2>
+        <p class="text-xl opacity-50">Feel free to reach out for collaborations, inquiries, or just to say hello. I&apos;m always excited to connect with new people!</p>
+        <form 
+            autocomplete="off" 
+            action=""
+            class="flex flex-col gap-y-3 w-full py-2 mt-1"
+            data-email-form
+        >
+            <label for="name" class="text-xl font-bold">Name</label>
+            <input 
+                type="text" 
+                name="name" 
+                id="name" 
+                placeholder="Your name" 
+                class="w-full rounded-lg bg-transparent border-2 border-gray-300 px-4 py-2 text-xl focus:outline-none focus:border-pink-500"
+            >
+            <label for="email" class="text-xl font-bold">Email</label>
+            <input 
+                type="email" 
+                name="email" 
+                id="email" 
+                placeholder="Your email" 
+                class="w-full rounded-lg bg-transparent border-2 border-gray-300 px-4 py-2 text-xl focus:outline-none focus:border-pink-500"
+            >
+            <label for="message" class="text-xl font-bold">Message</label>
+            <textarea 
+                name="message" 
+                id="message" 
+                placeholder="Your message" 
+                class="w-full rounded-lg bg-transparent border-2 border-gray-300 px-4 py-2 text-xl focus:outline-none focus:border-pink-500"
+            ></textarea>
+            <button 
+                type="submit" 
+                class="btn-submit w-full rounded-lg bg-pink-500 px-4 py-2 text-xl font-bold text-white hover:bg-pink-600 focus:outline-none focus:bg-pink-600"
+            >
+                Send
+            </button>
+            <p id="form-message" class="text-sm text-red-500 hidden"></p>
+        </form>        
+	</div>
+</section>

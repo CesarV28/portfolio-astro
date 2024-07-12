@@ -1,0 +1,42 @@
+---
+const { pathname } = Astro.url;
+
+import { socials, pages } from '../assets/data.ts';
+
+---
+
+
+<nav class="fixed w-full h-16 bg-[#0f0f0f] text-white flex items-center md:justify-between xs:justify-center px-4 py-3 top-0 z-50">
+    <ul 
+        class="hidden justify-items-center xl:basis-[20%] md:basis-[28%] md:grid"
+        style={{ gridTemplateColumns: `repeat(${socials.length}, minmax(0, 1fr))` }}
+    >
+        {socials.map((social) => (
+            <li class="hover:text-white">
+                <a 
+                    href={social.href} 
+                    target="_blank" 
+                    rel="noreferrer"
+                    class="text-2xl opacity-50 hover:opacity-100 duration-300 ease-in cursor-pointer"
+                >
+                    <social.icon color="white" />
+                </a>
+            </li>
+        ))}
+    </ul>
+    <ul 
+        class="grid justify-items-center gap-x-3 xl:basis-[20%] md:basis-[28%] sm:basis-[40%] xs:basis-[75%]"
+        style={{ gridTemplateColumns: `repeat(${pages.length + 1}, minmax(0, 1fr))` }}
+    >
+        {pages.map((page) => (
+            <li class="hover:text-white">
+                <a 
+                    href={page.href}
+                    class={`text-sm opacity-70 hover:opacity-100 duration-300 ease-in cursor-pointer ${pathname === page.href ? 'opacity-100' : ''}`}
+                >
+                    {page.name}
+                </a>
+            </li>
+        ))}
+    </ul>
+</nav>

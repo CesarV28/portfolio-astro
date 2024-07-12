@@ -1,0 +1,97 @@
+---
+import type { GetStaticPaths } from "astro";
+import Layout from "../layouts/Layout.astro";
+import { projects } from "../assets/data";
+import LeftArrowCircleIcon from "../components/icons/LeftArrowCircleIcon.astro";
+import GitHubIcon from "../components/icons/GitHubIcon.astro";
+import LabtopIcon from "../components/icons/LabtopIcon.astro";
+const { id } = Astro.params;
+
+export const getStaticPaths = (() => {
+    return projects.map((project) => ({
+        params: {
+            id: project.slug,
+        },
+    }));
+}) satisfies GetStaticPaths;
+
+const project = projects.find((project) => project.slug === id);
+---
+
+<Layout title={`Project | ${id}`}>
+    <!-- ====================== Background ====================== -->
+    <div class="relative h-fit flex items-center lg:h-screen" 
+        transition:name={`slug-${project?.slug}`}
+        transition:persist
+    >
+        <div
+            class="absolute min-h-screen inset-0 z-[-1] bg-gradient-to-b from-context"
+            style={`--context-color: ${project?.color}`}
+        >
+            <img
+                src={"https://images8.alphacoders.com/136/thumbbig-1365568.webp"}
+                alt={`${project?.name} background`}
+                class="transition-all duration-500 absolute z-[-1] inset-0 w-full h-full object-cover object-center mix-blend-overlay opacity-20 scale-90 blur-md"
+            />
+            <div
+                class="absolute inset-0 bg-gradient-to-t via-transparent from-zinc-900"
+            >
+            </div>
+        </div>
+        <!-- ====================== Main section ====================== -->
+        <div
+            class="flex flex-col items-center justify-center w-full h-[80%] xs:h-fit"
+        >
+            <div
+                class="flex gap-x-10 2xl:mt-2 2xl:w-3/5 2xl:h-fit xl:w-4/5 lg:mt-0 lg:flex-row lg:h-[90%] xs:w-4/5 xs:flex-col-reverse"
+            >
+                <img
+                    id="fade-image"
+                    src={"https://images8.alphacoders.com/136/thumbbig-1365568.webp"}
+                    alt={`${project?.name} main`}
+                    class="aspect-square object-cover object-top mx-auto lg:mb-0 lg:mt-0 sm:w-[450px] xxs:mt-10 xs:w-[80%] xs:mb-5 xs:mt-20"
+                />
+                <div class="flex flex-col gap-y-3 relative lg:py-0 xs:py-7">
+                    <h1 class="text-7xl leading-[70px] font-black">{project?.name}</h1>
+                    <p class="text-sm lg:text-lg text-zinc-400">{project?.description}</p>
+
+                    <!-- ====================== Buttons ====================== -->
+                     <div class="absolute flex gap-x-5 gap-y-1 lg:bottom-4 xxs:right-16 xxs:flex-row xxs:-bottom-4 xs:flex-col xs:-bottom-16">
+                        <a 
+                            href={`/#${project?.slug}`}
+                            class="text-sm text-zinc-400 hover:text-zinc-500 flex items-center gap-x-2"
+                        >
+                            <LeftArrowCircleIcon 
+                                color="#fff" 
+                                customClass="w-5 h-5"
+                            />
+                            <span class="">Back</span>
+                        </a>
+                        <a 
+                            href="https://github.com/CesarV28/astro-portfolio" 
+                            target="_blank" 
+                            class="text-sm text-zinc-400 hover:text-zinc-500 flex items-center gap-x-2"
+                        >
+                            <GitHubIcon 
+                                color="#fff" 
+                                customClass="w-5 h-5"
+                            />
+                            <span class="">Repository</span>
+                        </a>
+                        <a 
+                            href="https://github.com/CesarV28/astro-portfolio" 
+                            target="_blank" 
+                            class="text-sm text-zinc-400 hover:text-zinc-500 flex items-center gap-x-2"
+                        >
+                            <LabtopIcon 
+                                color="#fff" 
+                                customClass="w-5 h-5"
+                            />
+                            <span class="">Live Demo</span>
+                        </a>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</Layout>
