@@ -14,16 +14,20 @@ const { project } = Astro.props;
 ---
 
 
-<a 
+<a
     id={project.slug}
     href={project.slug}
-    class="projects-parent-container scroll-mt-48 relative hover:scale-105 transition-all duration-300 ease-in border border-white/80 bg-cover bg-center h-[300px] cursor-pointer"
-    style={{ backgroundImage: `liner-gradient(to bottom, hsla(0, 0%, 0%, 0.05)), url(${project.image})` }}
-    transition:name={`slug-${project.slug}`}
+    class="projects-parent-container scroll-mt-48 relative hover:scale-105 transition-all duration-300 ease-in border border-white/80 bg-cover bg-center h-[300px] cursor-pointer rounded-md"
+    style={{
+        backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${project.image})`
+    }}
+    transition-name={`slug-${project.slug}`}
 >
-    <div class="projects-container absolute bottom-0 px-5 my-6">
-        <h3 class="text-3xl lg:text-5xl md:text-4xl font-bold mb-4">{project.name}</h3>
-        <p class="projects-paragraph text-[15px] text-white/60 row-span-1 opacity-0 md:text-base xxs:text-[20px]">{project.description.slice(0, 100)} ...</p>
+    <div class="projects-container absolute bottom-0 px-5 py-6">
+        <h3 class="text-2xl lg:text-4xl md:text-4xl font-bold mb-4 text-white drop-shadow-md">{project.name}</h3>
+        <p class="projects-paragraph text-[15px] text-white/60 row-span-1 opacity-0 md:text-base xxs:text-[20px] drop-shadow-md">
+            {project.description.slice(0, 100)} ...
+        </p>
     </div>
 </a>
 

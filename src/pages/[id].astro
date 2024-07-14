@@ -1,10 +1,13 @@
 ---
 import type { GetStaticPaths } from "astro";
 import Layout from "../layouts/Layout.astro";
-import { projects } from "../assets/data";
+import { projects, technologies } from "../assets/data";
 import LeftArrowCircleIcon from "../components/icons/LeftArrowCircleIcon.astro";
 import GitHubIcon from "../components/icons/GitHubIcon.astro";
 import LabtopIcon from "../components/icons/LabtopIcon.astro";
+import LockIcon from "../components/icons/LockIcon.astro";
+
+
 const { id } = Astro.params;
 
 export const getStaticPaths = (() => {
@@ -18,9 +21,10 @@ export const getStaticPaths = (() => {
 const project = projects.find((project) => project.slug === id);
 ---
 
-<Layout title={`Project | ${id}`}>
+<Layout title={`Project | ${id}`} description={`${project?.name}`}>
     <!-- ====================== Background ====================== -->
-    <div class="relative h-fit flex items-center lg:h-screen" 
+    <div
+        class="relative h-fit flex items-center lg:h-screen"
         transition:name={`slug-${project?.slug}`}
         transition:persist
     >
@@ -29,7 +33,7 @@ const project = projects.find((project) => project.slug === id);
             style={`--context-color: ${project?.color}`}
         >
             <img
-                src={"https://images8.alphacoders.com/136/thumbbig-1365568.webp"}
+                src={project?.image}
                 alt={`${project?.name} background`}
                 class="transition-all duration-500 absolute z-[-1] inset-0 w-full h-full object-cover object-center mix-blend-overlay opacity-20 scale-90 blur-md"
             />
@@ -43,53 +47,91 @@ const project = projects.find((project) => project.slug === id);
             class="flex flex-col items-center justify-center w-full h-[80%] xs:h-fit"
         >
             <div
-                class="flex gap-x-10 2xl:mt-2 2xl:w-3/5 2xl:h-fit xl:w-4/5 lg:mt-0 lg:flex-row lg:h-[90%] xs:w-4/5 xs:flex-col-reverse"
+                class="flex gap-x-10 2xl:mt-2 2xl:h-fit xl:w-4/5 lg:mt-0 lg:flex-row lg:h-[90%] xs:w-[85%] xs:flex-col-reverse"
             >
                 <img
                     id="fade-image"
-                    src={"https://images8.alphacoders.com/136/thumbbig-1365568.webp"}
+                    src={project?.image}
                     alt={`${project?.name} main`}
-                    class="aspect-square object-cover object-top mx-auto lg:mb-0 lg:mt-0 sm:w-[450px] xxs:mt-10 xs:w-[80%] xs:mb-5 xs:mt-20"
+                    class="object-cover object-top mx-auto lg:mb-0 lg:mt-0 sm:w-[550px] h-[350px] xxs:mt-10 xs:w-full xs:mb-5 xs:mt-20 rounded-lg"
                 />
                 <div class="flex flex-col gap-y-3 relative lg:py-0 xs:py-7">
-                    <h1 class="text-7xl leading-[70px] font-black">{project?.name}</h1>
-                    <p class="text-sm lg:text-lg text-zinc-400">{project?.description}</p>
-
+                    <h1 class="text-5xl leading-[70px] font-black">
+                        {project?.name}
+                    </h1>
+                    <p class="text-sm lg:text-lg text-zinc-300">
+                        {project?.description}
+                    </p>
+                    <div class="flex gap-2 items-center flex-wrap md:gap-4">
+                        {
+                            project?.technologies.map((tech) => {
+                                const technology = technologies.find(
+                                    (t) => t.name === tech,
+                                );
+                                return (
+                                    <div class="flex gap-x-2 items-center">
+                                        {technology && (
+                                            <technology.icon
+                                                color={
+                                                    technology?.color || "#fff"
+                                                }
+                                                class="w-5 h-5"
+                                            />
+                                        )}
+                                        <span class="text-sm">
+                                            {technology?.name}
+                                        </span>
+                                    </div>
+                                );
+                            })
+                        }
+                    </div>
                     <!-- ====================== Buttons ====================== -->
-                     <div class="absolute flex gap-x-5 gap-y-1 lg:bottom-4 xxs:right-16 xxs:flex-row xxs:-bottom-4 xs:flex-col xs:-bottom-16">
-                        <a 
+                    <div
+                        class="absolute flex gap-x-5 gap-y-1 lg:bottom-4 xxs:right-16 xxs:flex-row xxs:-bottom-4 xs:flex-col xs:-bottom-16"
+                    >
+                        <a
                             href={`/#${project?.slug}`}
                             class="text-sm text-zinc-400 hover:text-zinc-500 flex items-center gap-x-2"
                         >
-                            <LeftArrowCircleIcon 
-                                color="#fff" 
-                                customClass="w-5 h-5"
-                            />
+                            <LeftArrowCircleIcon color="#fff" class="w-5 h-5" />
                             <span class="">Back</span>
                         </a>
-                        <a 
-                            href="https://github.com/CesarV28/astro-portfolio" 
-                            target="_blank" 
-                            class="text-sm text-zinc-400 hover:text-zinc-500 flex items-center gap-x-2"
-                        >
-                            <GitHubIcon 
-                                color="#fff" 
-                                customClass="w-5 h-5"
-                            />
-                            <span class="">Repository</span>
-                        </a>
-                        <a 
-                            href="https://github.com/CesarV28/astro-portfolio" 
-                            target="_blank" 
-                            class="text-sm text-zinc-400 hover:text-zinc-500 flex items-center gap-x-2"
-                        >
-                            <LabtopIcon 
-                                color="#fff" 
-                                customClass="w-5 h-5"
-                            />
-                            <span class="">Live Demo</span>
-                        </a>
-                     </div>
+                        { project?.url ? (
+                            <a
+                                href={project?.url}
+                                target="_blank"
+                                class="text-sm text-zinc-400 hover:text-zinc-500 flex items-center gap-x-2"
+                            >
+                                <GitHubIcon color="#fff" class="w-5 h-5" />
+                                <span class="">Repository</span>
+                            </a>
+                        ) : (
+                            <span class="flex gap-1 items-center bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-red-400 border border-red-400">
+                                <LockIcon color="#f87171" class="w-5 h-5" />
+                                <GitHubIcon color="#f87171" class="w-5 h-5" />
+                                <span class="">Repository</span>
+                            </span>
+                        )}
+                        {
+                            project?.demo ? (
+                                <a
+                                    href={project?.demo || "#"}
+                                    target="_blank"
+                                    class="text-sm text-zinc-400 hover:text-zinc-500 flex items-center gap-x-2"
+                                >
+                                    <LabtopIcon color="#fff" class="w-5 h-5" />
+                                    <span class="">Live Demo</span>
+                                </a>
+                            ) : (
+                                <span class="flex gap-1 items-center bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-red-400 border border-red-400">
+                                    <span class="">X</span>
+                                    <LabtopIcon color="#f87171" class="w-5 h-5" />
+                                    <span class="">Live Demo</span>
+                                </span>
+                            )
+                        }
+                    </div>
                 </div>
             </div>
         </div>

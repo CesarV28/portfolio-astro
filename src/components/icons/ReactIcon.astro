@@ -1,15 +1,15 @@
 ---
 interface Props {
     color: string;
-    customClass?: string;
+    class?: string;
 }
 
-const { color = "#000", customClass } = Astro.props;
+const { color = "#000" } = Astro.props;
 ---
 
 
 <svg
-    class={customClass}
+    { ...Astro.props}
     xmlns="http://www.w3.org/2000/svg"
     width="24"
     height="24"

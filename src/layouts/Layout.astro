@@ -1,28 +1,32 @@
 ---
 interface Props {
 	title: string;
+	description: string;
 }
 
-const { title } = Astro.props;
+const { title, description } = Astro.props;
 
-import '../assets/styles.css'
-import { ViewTransitions } from 'astro:transitions'
+import "../assets/styles.css";
+import { ViewTransitions } from "astro:transitions";
 ---
 
 <!doctype html>
 <html lang="en" class="scroll-smooth">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
+		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<ViewTransitions />
 	</head>
-	<body class="bg-background text-white">
+	<body class="bg-background text-white relative">
+		<div
+			class="fixed top-0 z-[-2] h-screen w-screen bg-neutral-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
+		>
+		</div>
 		<slot />
 		<script src="/src/assets/scripts.ts"></script>
 	</body>
 </html>
-
