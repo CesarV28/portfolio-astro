@@ -6,6 +6,21 @@ document.addEventListener('astro:page-load', () => {
 
 
 document.addEventListener('astro:page-load', () => {
+    const navbarToggle = document.getElementById("navbar-menu-toggle");
+    const navMobile = document.getElementById("nav-mobile");
+    if (navbarToggle && navMobile) {
+        navbarToggle.addEventListener("click", () => {
+            navMobile.classList.toggle("h-0");
+            navMobile.classList.toggle("h-full");
+            navbarToggle.classList.toggle("open-menu-toggle");
+            navbarToggle.classList.toggle("opacity-0");
+            navbarToggle.classList.toggle("opacity-100");
+        });
+    }
+});
+
+
+document.addEventListener('astro:page-load', () => {
     const wrapper = document.querySelector('[data-tech-wrapper]');
     // ================== Slider ==================
     let copy = document.querySelector('.tech-card')?.cloneNode(true);

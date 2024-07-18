@@ -3,10 +3,12 @@ const { pathname } = Astro.url;
 
 import { socials, pages } from '../assets/data.ts';
 import CheckCircleIcon from "./icons/CheckCircleIcon.astro";
+import MobileNavbar from './MobileNavbar.astro';
+import BadgeShine from './ui/BadgeShine.astro';
 ---
 
 
-<nav class="fixed w-full h-16 flex items-center md:justify-between xs:justify-center px-4 md:px-24 py-3 top-0 z-50 bg-gray-800 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 ">
+<nav class="md:flex hidden fixed w-full h-16 items-center md:justify-between xs:justify-center px-4 md:px-24 py-3 top-0 z-50 bg-gray-800 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 ">
     <ul 
         class="hidden md:flex justify-items-center items-center gap-x-4"
     >
@@ -23,11 +25,14 @@ import CheckCircleIcon from "./icons/CheckCircleIcon.astro";
                 </a>
             </li>
         ))}
-        <li class="flex gap-x-2 items-center bg-blue-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-green-400 border border-green-400">
-            <span >
-                Available to work
-            </span>
-            <CheckCircleIcon  color="#4ade80 " class='size-4' />
+        <li class="">
+
+            <BadgeShine class='flex items-center gap-1 border-gray-800 bg-[linear-gradient(110deg,#080821,45%,#4ade80,55%,#080821)]'>
+                <span >
+                    Available to work
+                </span>
+                <CheckCircleIcon  color="#4ade80 " class='size-4' />
+            </BadgeShine>
         </li>
     </ul>
     <ul 
@@ -45,3 +50,5 @@ import CheckCircleIcon from "./icons/CheckCircleIcon.astro";
         ))}
     </ul>
 </nav>
+
+<MobileNavbar />

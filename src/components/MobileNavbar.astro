@@ -1,0 +1,29 @@
+---
+const { pathname } = Astro.url;
+
+import { pages } from '../assets/data.ts';
+import MenuToggle from './MenuToggle.astro';
+---
+
+<header class="flex md:hidden h-12 md:h-20 px-8 md:px-12 xl:px-28  gap-12 items-center ">
+    <MenuToggle />
+    <nav 
+        id="nav-mobile"
+        class="fixed lg:relative top-0 left-0 bg-slate-950/90 text-center overflow-hidden transition-all duration-300 ease-in flex flex-col lg:flex-row gap-8 items-center justify-center w-full h-0 z-40"
+    >
+        <ul class="flex flex-col gap-6 items-center">
+            {
+                pages.map((page) => (
+                    <li class="hover:text-white">
+                        <a
+                            href={page.href}
+                            class={`text-3xl opacity-70 hover:opacity-100 duration-300 ease-in cursor-pointer ${pathname === page.href ? "opacity-100" : ""}`}
+                        >
+                            {page.name}
+                        </a>
+                    </li>
+                ))
+            }
+        </ul>
+    </nav>
+</header>
