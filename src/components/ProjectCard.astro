@@ -1,4 +1,6 @@
 ---
+import HandClick from './icons/HandClick.astro';
+
 interface Props {
     project: {
         name: string;
@@ -29,5 +31,6 @@ const { project } = Astro.props;
             {project.description.slice(0, 100)} ...
         </p>
     </div>
+    <HandClick color='#ffffff' class='absolute right-2 top-2 p-2 text-white/75 size-10' />
 </a>
 

@@ -53,13 +53,13 @@ const project = projects.find((project) => project.slug === id);
                     id="fade-image"
                     src={project?.image}
                     alt={`${project?.name} main`}
-                    class="object-cover object-top mx-auto lg:mb-0 lg:mt-0 sm:w-[550px] h-[350px] xxs:mt-10 xs:w-full xs:mb-5 xs:mt-20 rounded-lg"
+                    class="object-cover object-top mx-auto lg:mb-0 mt-0 sm:w-[550px] h-[350px] xxs:mt-10 xs:w-full xs:mb-5 rounded-lg"
                 />
                 <div class="flex flex-col gap-y-3 relative lg:py-0 xs:py-7">
-                    <h1 class="text-5xl leading-[70px] font-black">
+                    <h1 class="text-3xl md:text-5xl md:leading-[70px] font-black">
                         {project?.name}
                     </h1>
-                    <p class="text-sm lg:text-lg text-zinc-300">
+                    <p class="text-base lg:text-lg text-zinc-300">
                         {project?.description}
                     </p>
                     <div class="flex gap-2 items-center flex-wrap md:gap-4">
@@ -88,7 +88,7 @@ const project = projects.find((project) => project.slug === id);
                     </div>
                     <!-- ====================== Buttons ====================== -->
                     <div
-                        class="absolute flex gap-x-5 gap-y-1 lg:bottom-4 xxs:right-16 xxs:flex-row xxs:-bottom-4 xs:flex-col xs:-bottom-16"
+                        class="flex gap-x-5 gap-y-2 self-end mt-8"
                     >
                         <a
                             href={`/#${project?.slug}`}
@@ -107,7 +107,7 @@ const project = projects.find((project) => project.slug === id);
                                 <span class="">Repository</span>
                             </a>
                         ) : (
-                            <span class="flex gap-1 items-center bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-red-400 border border-red-400">
+                            <span class="flex gap-1 items-center bg-red-100 text-red-800 text-xs font-medium me-2 px-1.5 md:px-2 py-0.5 rounded dark:bg-gray-700 dark:text-red-400 border border-red-400">
                                 <LockIcon color="#f87171" class="w-5 h-5" />
                                 <GitHubIcon color="#f87171" class="w-5 h-5" />
                                 <span class="">Repository</span>

@@ -6,3 +6,10 @@ export type TechProps = {
     color: string;
     icon: (_props: Props) => any;
 };
+
+export type Experience = {
+    title: string;
+    description: string[];
+    date: string;
+    link: string;
+};

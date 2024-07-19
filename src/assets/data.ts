@@ -18,6 +18,7 @@ import TailwindIcon from "../components/icons/TailwindIcon.astro";
 import TwilioIcon from "../components/icons/TwilioIcon.astro";
 import TypescriptIcon from "../components/icons/TypescriptIcon.astro";
 import UpstashIcon from "../components/icons/UpstashIcon.astro";
+import type { Experience } from "../types";
 
 
 export const pages = [
@@ -160,22 +161,39 @@ export const technologies = [
     }
 ];
 
-export const experiences = [
+
+
+export const experiences: Experience[] = [
     {
         title: 'Software Developer',
-        description: 'Since June 2023, I have been working as a Software Developer, focusing on both frontend and backend development. I developed a platform that allows clients to visualize their dashboards connected to both Google and Tableau. My work includes AI projects such as a WhatsApp chatbot and a web-based chatbot, utilizing vector database memory to assist clients efficiently. Additionally, I created a modern survey platform that significantly improved efficiency, saving the company over two weeks of work. This platform supports both English and Spanish and includes an administrative dashboard with user insights. My contributions have been crucial in enhancing client interaction and operational efficiency.',
+        description: [
+            'I have been working as a Software Developer, focusing on both frontend and backend development.',
+            'I developed a platform that allows clients to visualize their dashboards connected to both Google and Tableau. My work includes AI projects such as a WhatsApp chatbot and a web-based chatbot, utilizing vector database memory to assist clients efficiently.',
+            'Additionally, I created a modern survey platform that significantly improved efficiency, saving the company over two weeks of work. This platform supports both English and Spanish and includes an administrative dashboard with user insights.',
+            'My contributions have been crucial in enhancing client interaction and operational efficiency.',
+        ],
         date: 'June 2023 - Present',
         link: 'https://let-datastudio.com',
     },
     {
         title: 'Software Development Trainee',
-        description: `At Turing-IA, I led the development of a client portal, working on both the frontend and backend. The portal provided users with access to exclusive content such as video tutorials, webinars, masterclasses, and personalized services. My main focus was on implementing secure email and password authentication, validating users' subscription plans, and enabling users to update their personal information. For administrators, I added features to manage content and users. I also integrated Tableau dashboards with Single Sign-On for real-time data visualization, enhancing the user experience. My contributions were crucial to the portal's success, providing a valuable platform for the company's clients.`,
+        description: [
+            "At Turing-IA, I led the development of a client portal, working on both the frontend and backend. The portal provided users with access to exclusive content such as video tutorials, webinars, masterclasses, and personalized services.",
+            "My main focus was on implementing secure email and password authentication, validating users' subscription plans, and enabling users to update their personal information. For administrators, I added features to manage content and users.",
+            "I also integrated Tableau dashboards with Single Sign-On for real-time data visualization, enhancing the user experience.",
+            "My contributions were crucial to the portal's success, providing a valuable platform for the company's clients."
+        ],
         date: 'December 2022 - May 2023',
         link: '',
     },
     {
         title: 'Social Service - Systems Developer',
-        description: 'During my social service, I designed and developed an automated registration system that significantly improved the efficiency of the client registration process. The system organized data in a logical and orderly manner, facilitating its use in subsequent analyses. I worked closely with the company team to ensure the system met their specific needs and requirements. Once implemented, the system was well-received by users and became an essential tool for the business.',
+        description: [
+            "During my social service, I designed and developed an automated registration system that significantly improved the efficiency of the client registration process.",
+            "The system organized data in a logical and orderly manner, facilitating its use in subsequent analyses.",
+            "I worked closely with the company team to ensure the system met their specific needs and requirements.",
+            "Once implemented, the system was well-received by users and became an essential tool for the business."
+        ],
         date: 'January 2022 - December 2022',
         link: '',
     },
@@ -192,7 +210,7 @@ export const projects = [
     //     image: 'https://github.com/CesarV28/astro-portfolio/blob/main/src/assets/images/astro-portfolio.png?raw=true',
     //     color: '#191d51',
     //   },
-      {
+    {
         name: 'Budget Tracker app built with Next.js',
         description: 'I developed a budget tracking app using Next.js, integrating an authentication and user management tool called Clerk, and using SQLite as the database. The app stands out for its ability to create new categories for purchases and expenses, organized by week, month, and year. Additionally, it features charts that display spending trends over selected dates, providing users with clear insights into their financial habits.',
         technologies: ['Next.js', 'Clerk', 'SQLite', 'Docker', 'Tailwind CSS'],
@@ -201,8 +219,8 @@ export const projects = [
         demo: '',
         image: '/imgs/project-1.webp',
         color: '#db852e',
-      },
-      {
+    },
+    {
         name: 'Next.js Auth template',
         description: 'A Next.js authentication template built with NextAuth, Prisma and postgresql. The template includes features such as user registration, login, password recovery, and social login integration. It also includes a dashboard for users to manage their profiles, access levels, and other settings.',
         technologies: ['Next.js', 'Prisma', 'PostgreSQL', 'Docker', 'Tailwind CSS'],
@@ -211,8 +229,8 @@ export const projects = [
         demo: '',
         image: '/imgs/project-2-1.webp',
         color: '#000',
-      },
-      {
+    },
+    {
         name: 'AI Chatbot web application built with Next.js and OpenAI',
         description: 'A chatbot web application built with Nextjs and OpenAI. The application allows users to chat with agents, which each one has it owns information to answer, set up conversations, and interact with the chatbots. It also includes features such as chat history, user authentication, and integration with various third-party APIs. Chatbots memory are using Upstash, a vector database, to store and retrieve information and file documents.',
         technologies: ['Next.js', 'OpenAI', 'Upstash', 'PostgreSQL'],
@@ -221,8 +239,8 @@ export const projects = [
         demo: 'https://alfy.ia.letdatastudio.com/',
         image: '/imgs/project-3.webp',
         color: '#688589',
-      },
-      {
+    },
+    {
         name: 'Whatsapp AI Chatbot application with OpenAI and Twilio',
         description: 'Developed a Whatsapp AI chatbot using OpenAI and Twilio. The chatbot provides detailed information about products and services, utilizes Twilio buttons and lists for better interaction, allows users to easily schedule appointments, and integrates OpenAI for in-depth consultations about the company. This project enhances user engagement and accessibility for customers seeking information and services.',
         technologies: ['OpenAI', 'Twilio', 'Nest.js', 'Supabase', 'PostgreSQL', 'Docker'],
@@ -231,5 +249,5 @@ export const projects = [
         demo: 'https://wa.me/17066703660?text=Hello%20I%20have%20an%20inquiry',
         image: '/imgs/project-4.webp',
         color: '#005c4b',
-      },
+    },
 ];
